@@ -147,10 +147,10 @@ HTML = """<!DOCTYPE html>
     <h1>每日知途（WisdomDaily）· 设计文档总览</h1>
     <p class="sub">HarmonyOS NEXT · API 20（6.0.0(20)）· ArkTS + ArkUI 声明式 · 单进程离线应用</p>
     <div class="meta">
-      <span class="chip">包名 <b>com.ohos.wxz.wisdomdaily</b></span>
+      <span class="chip">包名 <b>com.wxz.wisdomdaily</b></span>
       <span class="chip">架构风格 <b>七层分层单体</b></span>
       <span class="chip">存储 <b>RelationalStore（SQLite）</b></span>
-      <span class="chip">数据模型 <b>12 表 + 2 视图 + 12 索引</b></span>
+      <span class="chip">数据模型 <b>14 表 + 2 视图 + 14 索引</b>（v7）</span>
       <span class="chip">文档版本 <b>v2.0</b></span>
       <span class="chip">已落地代码 <b>54 文件 / 26 598 行</b></span>
     </div>
@@ -175,10 +175,10 @@ HTML = """<!DOCTYPE html>
     <table>
       <thead><tr><th>文档</th><th>文件</th><th>核心内容</th></tr></thead>
       <tbody>
-        <tr><td>需求分析</td><td><span class="filetag">docs/01-需求分析.md</span></td><td>项目目标与存储约束（ST-1~5）、3 类角色、8 模块功能需求、12 项非功能需求、14 条验收标准、需求追踪矩阵</td></tr>
-        <tr><td>数据库设计</td><td><span class="filetag">docs/02-数据库设计.md</span></td><td>存储选型决策、物理设计、ER 模型、11 张表逐字段定义、2 个视图、10 个索引、事务边界、级联删除双保险、版本迁移、备份恢复</td></tr>
-        <tr><td>概要设计</td><td><span class="filetag">docs/03-概要设计.md</span></td><td>七层分层、10 条设计原则、6 条架构铁律、模块划分、技术选型、接口契约（DbExecutor / RsReader / Repository）、11 项 ADR</td></tr>
-        <tr><td>详细设计</td><td><span class="filetag">docs/04-详细设计.md</span></td><td>数据库基础设施、领域模型类图、9 个 DAO、Repository 读写路径、8 个算法、17 项缺陷对照、测试设计、文件级索引</td></tr>
+        <tr><td>需求分析</td><td><span class="filetag">docs/01-需求分析.md</span></td><td>项目目标与存储约束（ST-1~5）、3 类角色、12 模块功能需求、12 项非功能需求、25 条验收标准、需求追踪矩阵</td></tr>
+        <tr><td>数据库设计</td><td><span class="filetag">docs/02-数据库设计.md</span></td><td>存储选型决策、物理设计、ER 模型、14 张表逐字段定义、2 个视图、14 个索引、事务边界、级联删除双保险、版本迁移、备份恢复</td></tr>
+        <tr><td>概要设计</td><td><span class="filetag">docs/03-概要设计.md</span></td><td>七层分层、10 条设计原则、6 条架构铁律、模块划分、技术选型、接口契约（DbExecutor / RsReader / Repository）、12 项 ADR</td></tr>
+        <tr><td>详细设计</td><td><span class="filetag">docs/04-详细设计.md</span></td><td>数据库基础设施、领域模型类图、11 个 DAO、Repository 读写路径、8 个算法、17 项缺陷对照、测试设计、文件级索引</td></tr>
         <tr><td>架构与数据流</td><td><span class="filetag">docs/05-系统架构与数据流.md</span></td><td>架构分析主文档：分层职责与铁律、核心模块协作、读/写数据流、相较基线的改进、四阶段演进路线</td></tr>
         <tr><td>状态管理与桌面卡片</td><td><span class="filetag">docs/06-状态管理与桌面卡片方案.md</span></td><td>状态管理 V2 落地约定 · 2*2 / 2*4 桌面卡片（数据通道 / 刷新策略 / 窄宽两套版式 / 加卡姿势与排障）· 上课提醒，v5.1 规划 + 实施回执</td></tr>
         <tr><td>系统架构图</td><td><span class="filetag">diagrams/系统架构图.svg</span></td><td>七层分层 + 9 项横切关注点 + 六条架构铁律 + 依赖方向标注</td></tr>
@@ -207,7 +207,7 @@ __ARCH_SVG__
         <tr><td><b>② 表现层</b></td><td><code>pages/*.ets</code>、半模态设置面板、拾色弹窗</td><td>渲染界面、收集输入、触发路由</td><td>不出现 <code>@kit.ArkData</code> / 表名 / SQL 关键字</td></tr>
         <tr><td><b>③ 状态层</b></td><td><code>@ObservedV2</code> / <code>@Trace</code> / <code>@Provider</code> / <code>@Local</code></td><td>状态持有与精准刷新；源状态变更后统一重算派生状态</td><td>不做持久化；不做业务计算</td></tr>
         <tr><td><b>④ 编排层</b></td><td><code>ScheduleRepository</code>、<code>seed</code>、<code>LegacyJsonImporter</code>、<code>ConflictDetector</code></td><td><b>决定事务边界</b>、组装对象图、用例编排、初始化编排</td><td>不写 SQL；不感知 UI</td></tr>
-        <tr><td><b>⑤ 数据访问层</b></td><td><code>dao/</code> 9 个 DAO</td><td>单表 SQL 与行映射，只返回 <code>*Row</code></td><td>不判业务规则；不自行开事务；不返回领域对象</td></tr>
+        <tr><td><b>⑤ 数据访问层</b></td><td><code>dao/</code> 11 个 DAO</td><td>单表 SQL 与行映射，只返回 <code>*Row</code></td><td>不判业务规则；不自行开事务；不返回领域对象</td></tr>
         <tr><td><b>⑥ 数据库基础设施</b></td><td><code>ScheduleDb</code> · <code>TableSchema</code> · <code>DbExecutor</code> · <code>DbMigrations</code></td><td>连接与 schema 生命周期、事务、执行器抽象、版本迁移、备份恢复</td><td>不含任何业务语义</td></tr>
         <tr><td><b>⑦ 领域模型层</b></td><td><code>model/</code> 领域类 + 13 个 <code>*Row</code></td><td>业务实体、规则、计算（含完整冲突判定）</td><td>不 import 存储 API；不持有文件路径或句柄</td></tr>
         <tr><td><b>⑧ 存储与系统能力</b></td><td><code>RelationalStore</code> · 沙箱 <code>databaseDir</code> · 系统 Kit</td><td>数据持久化与平台原子能力</td><td>—</td></tr>
@@ -307,11 +307,11 @@ __FLOW_SVG__
         <tr><td>日志模式</td><td><code>journal_mode = WAL</code></td><td>读写不互斥，切周查询不被写事务阻塞</td></tr>
         <tr><td>同步级别</td><td><code>synchronous = FULL</code></td><td>提交即落盘；写入频次低，用性能换"绝不丢"</td></tr>
         <tr><td>外键</td><td><code>foreign_keys = ON</code></td><td>每连接生效，连接池下不保证 → 另有应用层级联双保险</td></tr>
-        <tr><td>版本号</td><td><code>user_version = 1</code></td><td>由 <code>store.version</code> 读写，驱动迁移</td></tr>
+        <tr><td>版本号</td><td><code>user_version = 7</code></td><td>由 <code>store.version</code> 读写，驱动迁移（v1→v7）</td></tr>
       </tbody>
     </table>
 
-    <h3>11 张表 + 2 个视图</h3>
+    <h3>14 张表 + 2 个视图 + 14 个索引</h3>
     <table>
       <thead><tr><th>分组</th><th>表 / 视图</th><th>关键设计</th></tr></thead>
       <tbody>
@@ -326,6 +326,8 @@ __FLOW_SVG__
         <tr><td><code>period_week</code></td><td><b>周次子表</b>：让周次交集能下推 SQL，并让"第 N 周"可索引</td></tr>
         <tr><td rowspan="2">人员与设置</td><td><code>student</code></td><td>学生；<code>telephone</code> 为 TEXT（保留前导 0）；<code>remark</code>（修正旧版拼写 <code>remake</code>）</td></tr>
         <tr><td><code>app_setting</code></td><td>单行设置；存 <b>真实主键指针</b>（<code>semester_id</code> / <code>teacher_id</code>）而非数组下标</td></tr>
+        <tr><td rowspan="2">签到与待办</td><td><code>attendance</code>（v6）</td><td>签到；<code>UNIQUE(time_period_id, week_no, student_id)</code>；<code>grade</code> / <code>score</code> 未评写 NULL，不写 0</td></tr>
+        <tr><td><code>todo_task</code> · <code>todo_subtask</code>（v7）</td><td><b>无外键</b>：待办与课表完全独立；软删 + 30 天回收站；子任务由 DAO 先删后插</td></tr>
         <tr><td rowspan="2">视图</td><td><code>v_lesson</code></td><td>按周展开的课表读模型，供"取某周课表"使用</td></tr>
         <tr><td><code>v_template_stat</code></td><td>实时 <code>COUNT</code> 模板引用次数，<b>消灭会漂移的冗余计数</b></td></tr>
       </tbody>
@@ -384,7 +386,7 @@ __FLOW_SVG__
         <tr><td>ADR-07</td><td><code>period_week</code> 拆表</td><td>周次语义下推到 SQL，候选集在库层收敛</td></tr>
         <tr><td>ADR-08</td><td>引用计数改视图实时统计</td><td>不漂移比省一次聚合更重要</td></tr>
         <tr><td>ADR-09</td><td>不可变业务主键取代按名关联</td><td>重命名变一次 UPDATE；代价：不能再用名称做联表捷径</td></tr>
-        <tr><td>ADR-10</td><td>Navigation 单栈 + 参数传主键</td><td>Auto 模式适配折叠屏分栏；传主键避免跨页共享实例被误改</td></tr>
+        <tr><td>ADR-10</td><td>路由用 router，不引入 Navigation/NavPathStack</td><td>5 个全屏页且无分栏诉求；pushUrl/getParams/back + main_pages.json 注册即可，半模态不进路由栈</td></tr>
         <tr><td>ADR-11</td><td>时间轴与网格共用节次数据源</td><td>绝对定位 + 固定行高，避免弹性布局像素累积误差</td></tr>
       </tbody>
     </table>
@@ -469,7 +471,7 @@ __FLOW_SVG__
         <tr><td>M3 网格渲染</td><td>课程网格组件</td><td>按「教师 + 周次 + 作息模板」渲染星期 × 节次网格</td></tr>
         <tr><td>M4 业务编排</td><td><code>ScheduleRepository</code></td><td><b>事务边界</b>、对象图组装、用例编排、初始化与备份</td></tr>
         <tr><td>M5 冲突检测</td><td><code>ConflictDetector</code></td><td>教师维度 + 班级维度两条 JOIN，周次 <code>IN</code> 下推</td></tr>
-        <tr><td>M6 数据访问</td><td><code>dao/</code> 9 个 DAO</td><td>单表 SQL 与行映射，首参一律 <code>DbExecutor</code></td></tr>
+        <tr><td>M6 数据访问</td><td><code>dao/</code> 11 个 DAO</td><td>单表 SQL 与行映射，首参一律 <code>DbExecutor</code></td></tr>
         <tr><td>M7 数据库基础设施</td><td><code>ScheduleDb</code> / <code>TableSchema</code></td><td>连接、PRAGMA、建表、迁移、事务、备份恢复</td></tr>
         <tr><td>M8 执行器抽象</td><td><code>DbExecutor</code> / <code>RsReader</code></td><td>统一"连接/事务"两种场景；类型安全读列</td></tr>
         <tr><td>M9 领域模型</td><td><code>model/</code> 7 文件</td><td>实体与业务规则，含 <code>TimePeriod.overlaps()</code></td></tr>
@@ -500,7 +502,7 @@ __FLOW_SVG__
   <!-- 落地状态 -->
   <section class="card" id="status">
     <h2><span class="num">8</span>落地状态与下一步</h2>
-    <p class="lead">工程位于 <span class="filetag">WisdomDaily/</span>，API 20，包名 <code>com.ohos.wxz.wisdomdaily</code>。</p>
+    <p class="lead">工程位于 <span class="filetag">WisdomDaily/</span>，API 20，包名 <code>com.wxz.wisdomdaily</code>。</p>
 
     <h3>完成情况</h3>
     <table>
@@ -509,7 +511,7 @@ __FLOW_SVG__
         <tr><td>设计文档（6 份 Markdown）</td><td><span class="sev fixed">完成</span></td><td>需求 / 数据库 / 概要 / 详细 / 架构与数据流 / 状态管理与桌面卡片，全部为 v2.0 关系库方案</td></tr>
         <tr><td>图纸（2 张 SVG）</td><td><span class="sev fixed">完成</span></td><td>七层架构图 · 核心数据流图（读 / 写 / 初始化编排）</td></tr>
         <tr><td>工程骨架与配置</td><td><span class="sev fixed">完成</span></td><td>AppScope / entry 模块 / hvigor / 资源 / 权限（仅 WRITE_MEDIA）</td></tr>
-        <tr><td>数据层 + 页面层</td><td><span class="sev fixed">完成</span></td><td>全工程 54 个 <code>.ets</code> / 26 598 行：课表视图（滑动切周 + 空表自证诊断）、课程编辑（多班级 / 多时间段 / HSV 拾色 / 冲突确认）、时间表编辑（内容比对判脏）、管理面板（FIT_CONTENT 半模态）、名册 / 时间管理 / 教师管理（名册另有 .xls 导入导出 / 合并单元格与边框；三个列表视图统一为 List + 左滑编辑/删除 + 长按多选 + 名册两排式底栏的同款交互（教师添加改为点击展开表单））、桌面卡片（2*2 与 2*4 **同高不同宽** → 窄卡竖排 / 宽卡横排两套版式，只显示未上完的两节，点击课程跳转详情）、上课提醒（次日 22:00 + 课前 N 分钟，系统代理提醒）、待办（任务 + 子任务 + 回收站 30 天 + 应用内到点提醒 + 「学习」清单展示当天课程，schema v7）、<b>课表分享包</b>（顶栏分享图标导出 zip：manifest.json + 课程清单表 + 作息节次表 + 说明；顶栏下载图标导入：Excel / zip / 官网〔占位〕，导入为「新建学期」，不覆盖已有数据；<b>并认出教务系统导出的「教师个人课表」网格</b>：自动拆出课程名 / 周次 / 教室[节次]节 / 班级:人数，按大节钟点反推作息节次表，导入面板底部另有说明与两张 Excel 模板下载）</td></tr>
+        <tr><td>数据层 + 页面层</td><td><span class="sev fixed">完成</span></td><td>全工程 55 个 <code>.ets</code> / 26 598 行：课表视图（滑动切周 + 空表自证诊断）、课程编辑（多班级 / 多时间段 / HSV 拾色 / 冲突确认）、时间表编辑（内容比对判脏）、管理面板（FIT_CONTENT 半模态）、名册 / 时间管理 / 教师管理（名册另有 .xls 导入导出 / 合并单元格与边框；三个列表视图统一为 List + 左滑编辑/删除 + 长按多选 + 名册两排式底栏的同款交互（教师添加改为点击展开表单））、桌面卡片（2*2 与 2*4 **同高不同宽** → 窄卡竖排 / 宽卡横排两套版式，只显示未上完的两节，点击课程跳转详情）、上课提醒（次日 22:00 + 课前 N 分钟，系统代理提醒）、待办（任务 + 子任务 + 回收站 30 天 + 应用内到点提醒 + 「学习」清单展示当天课程，schema v7）、<b>课表分享包</b>（顶栏分享图标导出 zip：manifest.json + 课程清单表 + 作息节次表 + 说明；顶栏下载图标导入：Excel / zip / 官网〔占位〕，导入为「新建学期」，不覆盖已有数据；<b>并认出教务系统导出的「教师个人课表」网格</b>：自动拆出课程名 / 周次 / 教室[节次]节 / 班级:人数，按大节钟点反推作息节次表，导入面板底部另有说明与两张 Excel 模板下载）</td></tr>
         <tr><td>课堂签到（点名）</td><td><span class="sev fixed">完成</span></td><td>课程详情中间「签到」→ <b>全屏点名页</b>（<code>pages/CheckIn.ets</code>）：学生纵向列表，<b>左滑旷课（导出 ×）/ 右滑请假（导出 ⊕）/ 长按并拖到圆环上选等级 1~5（正上方 1/3 是取消）</b>（等级换算随机分当场落库，导两次一致）；结果点「完成」才落库（Save-on-Done + 快照判脏）；名册导出支持<b>原表 / 算分后</b>两种口径，一次点名占一列（最多 5 列）；<code>attendance</code> 表 schema v6；详见 <span class="filetag">docs/04</span> §12.3.2 (27) 与 <span class="filetag">docs/06</span> §2.9；签到面板里还可<b>只读展开「查看本节课程情况」</b>（出勤 / 旷课 / 请假 / 未点名 四格计数 + 已点名进度 + 已评级平均分 + 逐人列表，全程不落库）；<b>长按期间其余学生压阴影、只有被选中的那一行可操作</b>，<b>列表最底下的「单人视图」按钮</b>进去（<b>上半屏</b>当前学生 / <b>下半屏</b>切换视图 + 1/2/3 + 4/5/⊕/× / 底部两端前后两位学生，见 <span class="filetag">docs/04</span> §12.3.2 (29)、(30)）</td></tr>
         <tr><td>桌面卡片（2*2 / 2*4 今日课程）</td><td><span class="sev fixed">完成</span></td><td><code>EntryFormAbility</code> + <code>widget/</code>：<b>两种尺寸都只显示两节、每节都是两行</b>（2*2 与 2*4 同高、只差宽度 → 窄卡每节竖排两行「课程名 / 第二行四宫格：<b>左钟点上下排（贴左）+ 右教室与人数上下排（贴右）</b>」/ 宽卡每节横排两行）、顶部右上角 <code>ic_app</code> 图标、<b>钟点/教室/人数不出现省略号</b>（超长文字改缩字号；<b>仅窄卡课程名固定 12pt、超长末尾截断</b>）、只显示当天还没上完的课（<code>今天没课啦ヽ(*≧ω≦)ﾉ</code> <b>只在真没课时出现</b>；<b>只剩一节时第二格留白、固定两格</b>）、<b>顶栏课程数徽标</b>（今天"剩 N 节" / 明天"共 N 节"，吃应用里"今天"日期徽标的同一个高亮色；<b>窄卡不显示周数，只留这一格</b>）、<b>22 点切次日与标题的"今天/明天"跟随「提醒第二天的课」开关</b>（关掉后整天只说今天）、30 分钟定时刷新 + 前后台主动推送、宽卡行内显示 <code>@教室 · N人</code> 与课程类型 <code>（理论/实验）</code>、点某行拉起应用打开该课详情、<b>没课时点整张卡进应用看课表</b>（只携周次、切回「首页」页签）；详见 <span class="filetag">docs/06</span></td></tr>
         <tr><td>上课提醒</td><td><span class="sev fixed">完成</span></td><td><code>service/LessonReminder.ets</code> + <code>app_setting</code> 三列（schema v5）：「我的 → 上课提醒」两个开关 + 提前量输入框；提醒条目每次按课表**全清重建**，走系统后台代理提醒（应用不运行也能弹）；每条提醒带「关闭」按钮、每次重建清点系统额度（30 条）、额度满即熔断 10 分钟不刷屏；详见 <span class="filetag">docs/06</span> §2.8</td></tr>
@@ -535,7 +537,7 @@ __FLOW_SVG__
 
     <h3>遗留风险</h3>
     <ul>
-      <li><b>L-1</b> 版本迁移机制已有 v2~v6 五段真实迁移，但尚未在真机做过"逐版本连续升级"验证</li>
+      <li><b>L-1</b> 版本迁移机制已有 v2~v7 六段真实迁移，但尚未在真机做过"逐版本连续升级"验证</li>
       <li><b>L-2</b> <code>syncSemesterCourses</code> 的差量比对逻辑较复杂，缺少单测覆盖</li>
       <li><b>L-4</b> 冲突检测未覆盖"同一教师跨学期"，也未做"教室冲突"维度（数据基础已具备）</li>
       <li><b>L-5</b> <code>describeError</code> 的文案映射按经验列出，未覆盖全部 SQLite 错误码</li>
@@ -543,7 +545,7 @@ __FLOW_SVG__
     </ul>
   </section>
 
-  <footer>每日知途（WisdomDaily）设计文档 v2.0（RelationalStore 方案）· 生成于 2026-09-28 · 6 份 Markdown 文档 + 2 张 SVG 图纸 + 全工程 54 个 .ets / 26 598 行（数据层 + 页面层 + 桌面卡片 + 上课提醒 + 课堂签到 + 待办 + 课表分享包）</footer>
+  <footer>每日知途（WisdomDaily）设计文档 v2.0（RelationalStore 方案）· 生成于 2026-10-19 · 6 份 Markdown 文档 + 2 张 SVG 图纸 + 全工程 55 个 .ets / 26 598 行（数据层 + 页面层 + 桌面卡片 + 上课提醒 + 课堂签到 + 待办 + 课表分享包）</footer>
 </div>
 </body>
 </html>
