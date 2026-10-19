@@ -1,0 +1,40 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "每日知途主模块"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "每日知途"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "每日知途，数据保存在设备内置关系型数据库中"
+    },
+    {
+      "name": "export_files_reason",
+      "value": "需要访问文件管理器以导出备份文件"
+    },
+    {
+      "name": "db_backup_name",
+      "value": "wisdomdaily_backup.db"
+    },
+    {
+      "name": "widget_display_name",
+      "value": "每日知途 · 今日课程"
+    },
+    {
+      "name": "widget_desc",
+      "value": "显示今天的课程；22 点后显示明天"
+    },
+    {
+      "name": "EntryFormAbility_label",
+      "value": "每日知途 · 今日课程"
+    },
+    {
+      "name": "EntryFormAbility_desc",
+      "value": "桌面卡片数据提供方"
+    }
+  ]
+}

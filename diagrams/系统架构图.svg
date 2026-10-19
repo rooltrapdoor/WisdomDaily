@@ -1,0 +1,281 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1460 1290" width="1460" height="1290" font-family="HarmonyOS Sans SC, PingFang SC, Microsoft YaHei, sans-serif">
+  <defs>
+    <marker id="arrowDown" markerWidth="10" markerHeight="10" refX="5" refY="9" orient="auto">
+      <path d="M0,0 L5,9 L10,0 Z" fill="#4A8FE7"/>
+    </marker>
+    <marker id="arrowUpRed" markerWidth="10" markerHeight="10" refX="5" refY="1" orient="auto">
+      <path d="M0,10 L5,1 L10,10 Z" fill="#D9534F"/>
+    </marker>
+    <marker id="arrowUpDashed" markerWidth="9" markerHeight="9" refX="4.5" refY="1" orient="auto">
+      <path d="M0,9 L4.5,1 L9,9 Z" fill="#8A6A00"/>
+    </marker>
+  </defs>
+
+  <rect x="0" y="0" width="1460" height="1290" fill="#FFFFFF"/>
+
+  <!-- 标题 -->
+  <text x="70" y="52" font-size="23" font-weight="700" fill="#1F2329">每日知途（WisdomDaily）系统架构图</text>
+  <text x="70" y="78" font-size="13" fill="#5A6270">HarmonyOS NEXT · API 20 (6.0.0) · ArkTS + ArkUI 声明式 · 单进程离线应用 · 七层分层 · 存储为内置关系型数据库 RelationalStore（SQLite）</text>
+
+  <!-- 依赖方向说明 -->
+  <line x1="42" y1="112" x2="42" y2="1185" stroke="#4A8FE7" stroke-width="2" marker-end="url(#arrowDown)"/>
+  <text x="24" y="640" font-size="12" fill="#4A8FE7" font-weight="600" transform="rotate(-90 24 640)" text-anchor="middle">依 赖 方 向 ：上 层 → 下 层</text>
+
+  <!-- ============ ① 宿主层 ============ -->
+  <rect x="70" y="100" width="1100" height="94" rx="10" fill="#F2F3F5" stroke="#D5D8DC" stroke-width="1.5"/>
+  <text x="88" y="126" font-size="15" font-weight="700" fill="#3C4450">① 宿主层 Host　—　UIAbility 生命周期与数据库初始化编排</text>
+  <rect x="85" y="138" width="520" height="44" rx="8" fill="#FFFFFF" stroke="#DDE1E6"/>
+  <text x="99" y="157" font-size="12" font-weight="700" fill="#1F2329">EntryAbility</text>
+  <text x="99" y="174" font-size="10.5" fill="#5A6270">onCreate 发起 ScheduleRepository.init() · onDestroy 关闭数据库 · 后台 / 窗口销毁为空实现（数据已实时提交）</text>
+  <rect x="620" y="138" width="533" height="44" rx="8" fill="#FFFFFF" stroke="#DDE1E6"/>
+  <text x="634" y="157" font-size="12" font-weight="700" fill="#1F2329">EntryBackupAbility</text>
+  <text x="634" y="174" font-size="10.5" fill="#5A6270">系统级备份 / 恢复扩展（backup_config.json 声明包含数据库目录）</text>
+
+  <polygon points="618,196 624,206 612,206" fill="#9AA4B2"/>
+
+  <!-- ============ ② 表现层 ============ -->
+  <rect x="70" y="208" width="1100" height="150" rx="10" fill="#EAF3FF" stroke="#BBD8F7" stroke-width="1.5"/>
+  <text x="88" y="234" font-size="15" font-weight="700" fill="#1B5FA8">② 表现层 Presentation　—　ArkUI 声明式页面（只依赖 ScheduleRepository，不出现任何 SQL）</text>
+
+  <rect x="85" y="248" width="258" height="96" rx="8" fill="#FFFFFF" stroke="#DDE1E6"/>
+  <text x="99" y="270" font-size="13" font-weight="700" fill="#1F2329">课表主页 Index</text>
+  <text x="99" y="291" font-size="11" fill="#5A6270">周视图网格 · 左侧时间轴</text>
+  <text x="99" y="309" font-size="11" fill="#5A6270">周次导航条 · 滑动切周</text>
+  <text x="99" y="327" font-size="11" fill="#5A6270">设置面板（半模态）· 底部 Tab</text>
+
+  <rect x="355" y="248" width="258" height="96" rx="8" fill="#FFFFFF" stroke="#DDE1E6"/>
+  <text x="369" y="270" font-size="13" font-weight="700" fill="#1F2329">课程编辑</text>
+  <text x="369" y="291" font-size="11" fill="#5A6270">EditCourse / EditClassCourse</text>
+  <text x="369" y="309" font-size="11" fill="#5A6270">课程 / 班级 / 时间段 录入</text>
+  <text x="369" y="327" font-size="11" fill="#5A6270">HSV + HEX 拾色器</text>
+
+  <rect x="625" y="248" width="258" height="96" rx="8" fill="#FFFFFF" stroke="#DDE1E6"/>
+  <text x="639" y="270" font-size="13" font-weight="700" fill="#1F2329">课表时间</text>
+  <text x="639" y="291" font-size="11" fill="#5A6270">ViewSchedule / EditSchedule</text>
+  <text x="639" y="309" font-size="11" fill="#5A6270">节次数 · 每节起止时间</text>
+  <text x="639" y="327" font-size="11" fill="#5A6270">模板新建 / 复用</text>
+
+  <rect x="895" y="248" width="258" height="96" rx="8" fill="#FFFFFF" stroke="#DDE1E6"/>
+  <text x="909" y="270" font-size="13" font-weight="700" fill="#1F2329">学期 · 教师 · 学生</text>
+  <text x="909" y="291" font-size="11" fill="#5A6270">SemesterPage / EditTeacher</text>
+  <text x="909" y="309" font-size="11" fill="#5A6270">班级名单 · 导出导入 · 关于</text>
+  <text x="909" y="327" font-size="11" fill="#5A6270">EmptyDetailPage（分栏占位）</text>
+
+  <polygon points="618,360 624,370 612,370" fill="#9AA4B2"/>
+
+  <!-- ============ ③ 状态层 ============ -->
+  <rect x="70" y="372" width="1100" height="124" rx="10" fill="#EAF7F0" stroke="#B7E2C8" stroke-width="1.5"/>
+  <text x="88" y="398" font-size="15" font-weight="700" fill="#1E7A4C">③ 状态层 State　—　状态管理 V2（字段级精确响应式）</text>
+
+  <rect x="85" y="410" width="348" height="72" rx="8" fill="#FFFFFF" stroke="#DDE1E6"/>
+  <text x="99" y="432" font-size="13" font-weight="700" fill="#1F2329">@Provider / @Consumer</text>
+  <text x="99" y="453" font-size="11" fill="#5A6270">跨页共享同一内存实例（编辑页直接改源对象）</text>
+  <text x="99" y="471" font-size="11" fill="#5A6270">pageInfo · 当前学期课表 · 当前设置</text>
+
+  <rect x="446" y="410" width="348" height="72" rx="8" fill="#FFFFFF" stroke="#DDE1E6"/>
+  <text x="460" y="432" font-size="13" font-weight="700" fill="#1F2329">@ObservedV2 + @Trace</text>
+  <text x="460" y="453" font-size="11" fill="#5A6270">五层嵌套下追踪到具体字段</text>
+  <text x="460" y="471" font-size="11" fill="#5A6270">改动即刷新，无需整树重渲染</text>
+
+  <rect x="807" y="410" width="348" height="72" rx="8" fill="#FFFFFF" stroke="#DDE1E6"/>
+  <text x="821" y="432" font-size="13" font-weight="700" fill="#1F2329">@Local 派生状态</text>
+  <text x="821" y="453" font-size="11" fill="#5A6270">教师下拉项 · 当前教师课表 · 周次 / 周矩阵</text>
+  <text x="821" y="471" font-size="11" fill="#5A6270">源状态变更后必须 reloadDerivedState()</text>
+
+  <polygon points="618,498 624,508 612,508" fill="#9AA4B2"/>
+
+  <!-- ============ ④ 业务编排层 ============ -->
+  <rect x="70" y="510" width="1100" height="152" rx="10" fill="#FDF2F8" stroke="#F0C4DD" stroke-width="1.5"/>
+  <text x="88" y="536" font-size="15" font-weight="700" fill="#9B2C6B">④ 业务编排层 Service / Repository　—　页面访问数据的唯一入口（事务边界在这里决定）</text>
+
+  <rect x="85" y="550" width="348" height="98" rx="8" fill="#FFFFFF" stroke="#DDE1E6"/>
+  <text x="99" y="572" font-size="13" font-weight="700" fill="#1F2329">ScheduleRepository（单例门面 · 730 行）</text>
+  <text x="99" y="592" font-size="11" fill="#5A6270">loadWorkspace / loadSemesterCourses / loadWeekLessons</text>
+  <text x="99" y="610" font-size="11" fill="#5A6270">createSemester · insertCourse · savePeriod · replaceRoster</text>
+  <text x="99" y="628" font-size="11" fill="#5A6270">syncSemesterCourses（差量兜底）· backup / restore</text>
+
+  <rect x="446" y="550" width="348" height="98" rx="8" fill="#FFFFFF" stroke="#DDE1E6"/>
+  <text x="460" y="572" font-size="13" font-weight="700" fill="#1F2329">ConflictDetector（领域服务）</text>
+  <text x="460" y="592" font-size="11" fill="#5A6270">教师维度：同一教师同时刻不得上两门课</text>
+  <text x="460" y="610" font-size="11" fill="#5A6270">班级维度：同一班级不得被两门课占用</text>
+  <text x="460" y="628" font-size="11" fill="#5A6270">周次交集下推 SQL · 冲突详情返回调用方</text>
+
+  <rect x="807" y="550" width="348" height="98" rx="8" fill="#FFFFFF" stroke="#DDE1E6"/>
+  <text x="821" y="572" font-size="13" font-weight="700" fill="#1F2329">SeedData · LegacyJsonImporter</text>
+  <text x="821" y="592" font-size="11" fill="#5A6270">首启种子（教师 / 课程 / 班级 / 作息）</text>
+  <text x="821" y="610" font-size="11" fill="#5A6270">旧 JSON 一次性导入 → 归档备份目录</text>
+  <text x="821" y="628" font-size="11" fill="#5A6270">导入优先于种子 · 成功后归档，天然幂等</text>
+
+  <polygon points="618,666 624,676 612,676" fill="#9AA4B2"/>
+
+  <!-- ============ ⑤ 数据访问层 DAO ============ -->
+  <rect x="70" y="678" width="1100" height="152" rx="10" fill="#F0EBFF" stroke="#D2C4F5" stroke-width="1.5"/>
+  <text x="88" y="704" font-size="15" font-weight="700" fill="#5B39A8">⑤ 数据访问层 DAO　—　单表 SQL + 行映射（只返回 *Row，不做业务判断）</text>
+
+  <rect x="85" y="718" width="348" height="98" rx="8" fill="#FFFFFF" stroke="#DDE1E6"/>
+  <text x="99" y="740" font-size="13" font-weight="700" fill="#1F2329">基础数据 DAO</text>
+  <text x="99" y="760" font-size="11" fill="#5A6270">SemesterDao · ScheduleTemplateDao</text>
+  <text x="99" y="778" font-size="11" fill="#5A6270">TeacherDao（upsert 字段合并）</text>
+  <text x="99" y="796" font-size="11" fill="#5A6270">AppSettingDao（含 repairPointers 指针自愈）</text>
+
+  <rect x="446" y="718" width="348" height="98" rx="8" fill="#FFFFFF" stroke="#DDE1E6"/>
+  <text x="460" y="740" font-size="13" font-weight="700" fill="#1F2329">课表数据 DAO</text>
+  <text x="460" y="760" font-size="11" fill="#5A6270">CourseDao · ClassInfoDao · ClassGroup</text>
+  <text x="460" y="778" font-size="11" fill="#5A6270">TimePeriodDao（时间段 + period_week 周次）</text>
+  <text x="460" y="796" font-size="11" fill="#5A6270">StudentDao（名单 + 人数对账）</text>
+
+  <rect x="807" y="718" width="348" height="98" rx="8" fill="#FFFFFF" stroke="#DDE1E6"/>
+  <text x="821" y="740" font-size="13" font-weight="700" fill="#1F2329">LessonDao（读模型）</text>
+  <text x="821" y="760" font-size="11" fill="#5A6270">只查 v_lesson 视图：按周取课</text>
+  <text x="821" y="778" font-size="11" fill="#5A6270">weekOfTeacher / weekOfClass / roomsInWeek</text>
+  <text x="821" y="796" font-size="11" fill="#5A6270">首参一律 DbExecutor · 游标 try/finally 关闭</text>
+
+  <polygon points="618,834 624,844 612,844" fill="#9AA4B2"/>
+
+  <!-- ============ ⑥ 数据库基础设施 ============ -->
+  <rect x="70" y="846" width="1100" height="150" rx="10" fill="#E9F6FA" stroke="#B5DFEA" stroke-width="1.5"/>
+  <text x="88" y="872" font-size="15" font-weight="700" fill="#0F6B85">⑥ 数据库基础设施 DB　—　唯一允许 import relationalStore 的目录</text>
+
+  <rect x="85" y="886" width="258" height="96" rx="8" fill="#FFFFFF" stroke="#DDE1E6"/>
+  <text x="99" y="908" font-size="13" font-weight="700" fill="#1F2329">ScheduleDb（单例）</text>
+  <text x="99" y="929" font-size="11" fill="#5A6270">init 幂等 + 并发合流 opening</text>
+  <text x="99" y="947" font-size="11" fill="#5A6270">PRAGMA：foreign_keys / WAL / FULL</text>
+  <text x="99" y="965" font-size="11" fill="#5A6270">runInTransaction · backup · restore</text>
+
+  <rect x="355" y="886" width="258" height="96" rx="8" fill="#FFFFFF" stroke="#DDE1E6"/>
+  <text x="369" y="908" font-size="13" font-weight="700" fill="#1F2329">TableSchema（唯一真源）</text>
+  <text x="369" y="929" font-size="11" fill="#5A6270">DDL_TABLES 11 张表</text>
+  <text x="369" y="947" font-size="11" fill="#5A6270">DDL_VIEWS 2 个视图</text>
+  <text x="369" y="965" font-size="11" fill="#5A6270">DDL_INDEXES 10 个索引 · PRAGMA_SETUP</text>
+
+  <rect x="625" y="886" width="258" height="96" rx="8" fill="#FFFFFF" stroke="#DDE1E6"/>
+  <text x="639" y="908" font-size="13" font-weight="700" fill="#1F2329">DbExecutor + RsReader</text>
+  <text x="639" y="929" font-size="11" fill="#5A6270">StoreExecutor（自动提交）</text>
+  <text x="639" y="947" font-size="11" fill="#5A6270">TxExecutor（并入事务 · 可回滚）</text>
+  <text x="639" y="965" font-size="11" fill="#5A6270">RsReader：str / num / optReal / bool</text>
+
+  <rect x="895" y="886" width="258" height="96" rx="8" fill="#FFFFFF" stroke="#DDE1E6"/>
+  <text x="909" y="908" font-size="13" font-weight="700" fill="#1F2329">DbMigrations</text>
+  <text x="909" y="929" font-size="11" fill="#5A6270">store.version（user_version）驱动</text>
+  <text x="909" y="947" font-size="11" fill="#5A6270">只向前 · 幂等 · ALTER ADD COLUMN</text>
+  <text x="909" y="965" font-size="11" fill="#5A6270">全成功后写版本号</text>
+
+  <polygon points="618,1002 624,1012 612,1012" fill="#9AA4B2"/>
+
+  <!-- ============ ⑦ 领域模型层 ============ -->
+  <rect x="70" y="1014" width="1100" height="112" rx="10" fill="#FFF4E6" stroke="#F6D5A6" stroke-width="1.5"/>
+  <text x="88" y="1040" font-size="15" font-weight="700" fill="#A05A00">⑦ 领域模型层 Domain　—　model/　（纯数据 + 纯规则；不依赖存储 API、不依赖 UI、不持有路径）</text>
+
+  <rect x="85" y="1054" width="348" height="58" rx="8" fill="#FFFFFF" stroke="#DDE1E6"/>
+  <text x="99" y="1075" font-size="12" font-weight="700" fill="#1F2329">Semester · SemesterCourses</text>
+  <text x="99" y="1094" font-size="10.5" fill="#5A6270">Teacher · TeacherCourses · AppSetting</text>
+
+  <rect x="446" y="1054" width="348" height="58" rx="8" fill="#FFFFFF" stroke="#DDE1E6"/>
+  <text x="460" y="1075" font-size="12" font-weight="700" fill="#1F2329">Course · ClassGroup · TimePeriod</text>
+  <text x="460" y="1094" font-size="10.5" fill="#5A6270">TimePeriod.overlaps() 完整冲突判定</text>
+
+  <rect x="807" y="1054" width="348" height="58" rx="8" fill="#FFFFFF" stroke="#DDE1E6"/>
+  <text x="821" y="1075" font-size="12" font-weight="700" fill="#1F2329">ScheduleTemplate · ScheduleSlot</text>
+  <text x="821" y="1094" font-size="10.5" fill="#5A6270">ClassInfo · Student · ClassRoster · Rows（13 个行类型）</text>
+
+  <!-- 被依赖标注 -->
+  <line x1="1140" y1="1060" x2="1140" y2="1000" stroke="#8A6A00" stroke-width="1.6" stroke-dasharray="5,4" marker-end="url(#arrowUpDashed)"/>
+  <text x="1132" y="1040" font-size="10.5" fill="#8A6A00" font-weight="600" text-anchor="end" transform="rotate(-90 1132 1040)">被 ④⑤ 依赖（非反向依赖）</text>
+
+  <polygon points="618,1138 624,1148 612,1148" fill="#9AA4B2"/>
+
+  <!-- ============ ⑧ 存储与系统能力 ============ -->
+  <rect x="70" y="1150" width="1100" height="112" rx="10" fill="#F2F3F5" stroke="#D5D8DC" stroke-width="1.5"/>
+  <text x="88" y="1176" font-size="15" font-weight="700" fill="#3C4450">⑧ 存储与系统能力 Platform　—　全部数据仅存本机沙箱（不申请网络权限）</text>
+
+  <rect x="85" y="1190" width="520" height="58" rx="8" fill="#FFFFFF" stroke="#DDE1E6"/>
+  <text x="99" y="1211" font-size="12" font-weight="700" fill="#1F2329">RelationalStore · wisdomdaily.db（SQLite）</text>
+  <text x="99" y="1230" font-size="10.5" fill="#5A6270">SecurityLevel.S1 · WAL · synchronous=FULL · 11 表 / 2 视图 / 10 索引 · 参数绑定防注入</text>
+
+  <rect x="620" y="1190" width="533" height="58" rx="8" fill="#FFFFFF" stroke="#DDE1E6"/>
+  <text x="634" y="1211" font-size="12" font-weight="700" fill="#1F2329">系统能力 Kit</text>
+  <text x="634" y="1230" font-size="10.5" fill="#5A6270">AbilityKit · ArkData · ArkUI（Navigation / display）· PerformanceAnalysisKit（hilog）· CoreFileKit（导出）· ResourceManager</text>
+
+  <!-- ============ 横切关注点 ============ -->
+  <rect x="1190" y="100" width="250" height="1162" rx="10" fill="#FFF9E6" stroke="#F0DFA8" stroke-width="1.5"/>
+  <text x="1315" y="128" font-size="15" font-weight="700" fill="#8A6A00" text-anchor="middle">横切关注点</text>
+  <text x="1315" y="147" font-size="11" fill="#A08240" text-anchor="middle">Cross-Cutting Concerns</text>
+
+  <rect x="1205" y="162" width="220" height="112" rx="7" fill="#FFFFFF" stroke="#EFE0B8"/>
+  <rect x="1205" y="162" width="4" height="112" fill="#E0A800"/>
+  <text x="1220" y="184" font-size="12" font-weight="700" fill="#1F2329">架构铁律 R1 ~ R6</text>
+  <text x="1220" y="205" font-size="10" fill="#5A6270">R1 只有 ScheduleDb 拿 RdbStore</text>
+  <text x="1220" y="222" font-size="10" fill="#5A6270">R2 页面不出现 SQL / 表名</text>
+  <text x="1220" y="239" font-size="10" fill="#5A6270">R3 DAO 只返回 *Row</text>
+  <text x="1220" y="256" font-size="10" fill="#5A6270">R4 模型不 import 存储 API</text>
+  <text x="1220" y="273" font-size="10" fill="#5A6270">R5 事务只由 Repository 决定</text>
+
+  <rect x="1205" y="288" width="220" height="96" rx="7" fill="#FFFFFF" stroke="#EFE0B8"/>
+  <rect x="1205" y="288" width="4" height="96" fill="#E0A800"/>
+  <text x="1220" y="310" font-size="12" font-weight="700" fill="#1F2329">R6 模型不持有路径 / 句柄</text>
+  <text x="1220" y="331" font-size="10" fill="#5A6270">依赖图必须是严格单向 DAG：</text>
+  <text x="1220" y="348" font-size="10" fill="#5A6270">页面→Repo→DAO→DB→系统；</text>
+  <text x="1220" y="365" font-size="10" fill="#5A6270">⑦ 领域模型被 ②④⑤ 依赖而非反向</text>
+
+  <rect x="1205" y="398" width="220" height="96" rx="7" fill="#FFFFFF" stroke="#EFE0B8"/>
+  <rect x="1205" y="398" width="4" height="96" fill="#E0A800"/>
+  <text x="1220" y="420" font-size="12" font-weight="700" fill="#1F2329">Logger（hilog）</text>
+  <text x="1220" y="441" font-size="10" fill="#5A6270">domain 0x0A01 · tag 前缀 WSD_</text>
+  <text x="1220" y="458" font-size="10" fill="#5A6270">四级 debug / info / warn / error</text>
+  <text x="1220" y="475" font-size="10" fill="#5A6270">errText() 统一格式化错误码</text>
+
+  <rect x="1205" y="508" width="220" height="96" rx="7" fill="#FFFFFF" stroke="#EFE0B8"/>
+  <rect x="1205" y="508" width="4" height="96" fill="#E0A800"/>
+  <text x="1220" y="530" font-size="12" font-weight="700" fill="#1F2329">Util 工具</text>
+  <text x="1220" y="551" font-size="10" fill="#5A6270">newUuid() 业务主键生成</text>
+  <text x="1220" y="568" font-size="10" fill="#5A6270">normalizeColor() 统一 6 位色值</text>
+  <text x="1220" y="585" font-size="10" fill="#5A6270">textColorOf() BT.601 亮度取字色</text>
+
+  <rect x="1205" y="618" width="220" height="96" rx="7" fill="#FFFFFF" stroke="#EFE0B8"/>
+  <rect x="1205" y="618" width="4" height="96" fill="#E0A800"/>
+  <text x="1220" y="640" font-size="12" font-weight="700" fill="#1F2329">DateUtil 日期</text>
+  <text x="1220" y="661" font-size="10" fill="#5A6270">parseDate() 手工解析防 UTC 偏移</text>
+  <text x="1220" y="678" font-size="10" fill="#5A6270">getWeekNumber() 周一锚点 + 夹紧</text>
+  <text x="1220" y="695" font-size="10" fill="#5A6270">周矩阵 · 单双周文本化</text>
+
+  <rect x="1205" y="728" width="220" height="96" rx="7" fill="#FFFFFF" stroke="#EFE0B8"/>
+  <rect x="1205" y="728" width="4" height="96" fill="#E0A800"/>
+  <text x="1220" y="750" font-size="12" font-weight="700" fill="#1F2329">异常分级与降级</text>
+  <text x="1220" y="771" font-size="10" fill="#5A6270">Fatal：转只读模式并提示</text>
+  <text x="1220" y="788" font-size="10" fill="#5A6270">Recoverable：重建缺失 schema</text>
+  <text x="1220" y="805" font-size="10" fill="#5A6270">Degradable：归一化 / 夹紧后继续</text>
+
+  <rect x="1205" y="838" width="220" height="96" rx="7" fill="#FFFFFF" stroke="#EFE0B8"/>
+  <rect x="1205" y="838" width="4" height="96" fill="#E0A800"/>
+  <text x="1220" y="860" font-size="12" font-weight="700" fill="#1F2329">完整性约束</text>
+  <text x="1220" y="881" font-size="10" fill="#5A6270">外键 + UNIQUE + CHECK 三层</text>
+  <text x="1220" y="898" font-size="10" fill="#5A6270">级联删除双保险（应用层 + PRAGMA）</text>
+  <text x="1220" y="915" font-size="10" fill="#5A6270">class_info 引用用 RESTRICT 保守删除</text>
+
+  <rect x="1205" y="948" width="220" height="88" rx="7" fill="#FFFFFF" stroke="#EFE0B8"/>
+  <rect x="1205" y="948" width="4" height="88" fill="#E0A800"/>
+  <text x="1220" y="970" font-size="12" font-weight="700" fill="#1F2329">多端与折叠屏适配</text>
+  <text x="1220" y="991" font-size="10" fill="#5A6270">foldStatusChange 监听 + 注销</text>
+  <text x="1220" y="1008" font-size="10" fill="#5A6270">NavigationMode.Auto 分栏</text>
+
+  <rect x="1205" y="1050" width="220" height="88" rx="7" fill="#FFFFFF" stroke="#EFE0B8"/>
+  <rect x="1205" y="1050" width="4" height="88" fill="#E0A800"/>
+  <text x="1220" y="1072" font-size="12" font-weight="700" fill="#1F2329">国际化与主题</text>
+  <text x="1220" y="1093" font-size="10" fill="#5A6270">$string 文案，禁止硬编码中文</text>
+  <text x="1220" y="1110" font-size="10" fill="#5A6270">dark/element 深色色值</text>
+
+  <rect x="1205" y="1152" width="220" height="88" rx="7" fill="#FFFFFF" stroke="#EFE0B8"/>
+  <rect x="1205" y="1152" width="4" height="88" fill="#E0A800"/>
+  <text x="1220" y="1174" font-size="12" font-weight="700" fill="#1F2329">备份与迁移</text>
+  <text x="1220" y="1195" font-size="10" fill="#5A6270">store.backup / restore 一致性快照</text>
+  <text x="1220" y="1212" font-size="10" fill="#5A6270">旧 JSON 单向导入 + 归档</text>
+
+  <!-- 图例 -->
+  <line x1="70" y1="1272" x2="112" y2="1272" stroke="#4A8FE7" stroke-width="2" marker-end="url(#arrowDown)"/>
+  <text x="122" y="1277" font-size="12" fill="#5A6270">依赖方向（上层依赖下层）</text>
+  <line x1="330" y1="1272" x2="372" y2="1272" stroke="#D9534F" stroke-width="2" stroke-dasharray="5,4" marker-end="url(#arrowUpRed)"/>
+  <text x="382" y="1277" font-size="12" fill="#5A6270">禁止反向依赖</text>
+  <line x1="560" y1="1272" x2="602" y2="1272" stroke="#8A6A00" stroke-width="2" stroke-dasharray="5,4" marker-end="url(#arrowUpDashed)"/>
+  <text x="612" y="1277" font-size="12" fill="#5A6270">领域模型被上层复用（合法）</text>
+  <text x="900" y="1277" font-size="12" fill="#8A6A00" font-weight="600">存储：RelationalStore（SQLite），不使用 JSON 存业务数据</text>
+</svg>

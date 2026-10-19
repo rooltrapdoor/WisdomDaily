@@ -1,0 +1,56 @@
+{
+  "app": {
+    "products": [
+      {
+        "name": "default",
+        "signingConfig": "default",
+        "targetSdkVersion": "6.0.0(20)",
+        "compatibleSdkVersion": "6.0.0(20)",
+        "runtimeOS": "HarmonyOS",
+        "buildOption": {
+          "strictMode": {
+            "caseSensitiveCheck": true,
+            "useNormalizedOHMUrl": true
+          }
+        }
+      }
+    ],
+    "buildModeSet": [
+      {
+        "name": "debug"
+      },
+      {
+        "name": "release"
+      }
+    ],
+    "signingConfigs": [
+      {
+        "name": "default",
+        "type": "HarmonyOS",
+        "material": {
+          "certpath": "C:\\Users\\wxz\\.ohos\\config\\default_WisdomDaily_ai0hQCVntRYL0TAuVmMsgvuXp4RGUAuaZRfvBVBm-j8=.cer",
+          "keyAlias": "debugKey",
+          "keyPassword": "0000001B346F28118DFCAAD4C1F6283E98CE3FC4CF32E53761B31DAF6876F260F8CCB7C8A74275AE19D941",
+          "profile": "C:\\Users\\wxz\\.ohos\\config\\default_WisdomDaily_ai0hQCVntRYL0TAuVmMsgvuXp4RGUAuaZRfvBVBm-j8=.p7b",
+          "signAlg": "SHA256withECDSA",
+          "storeFile": "C:\\Users\\wxz\\.ohos\\config\\default_WisdomDaily_ai0hQCVntRYL0TAuVmMsgvuXp4RGUAuaZRfvBVBm-j8=.p12",
+          "storePassword": "0000001B609D9DA49EC10DFD459E24A2355ED4D036DDC1F7CCDC713BBE8E0FFDDFE98C1A7C769782F5FDAE"
+        }
+      }
+    ]
+  },
+  "modules": [
+    {
+      "name": "entry",
+      "srcPath": "./entry",
+      "targets": [
+        {
+          "name": "default",
+          "applyToProducts": [
+            "default"
+          ]
+        }
+      ]
+    }
+  ]
+}

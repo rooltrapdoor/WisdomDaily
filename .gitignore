@@ -1,0 +1,15 @@
+/node_modules
+/oh_modules
+/local.properties
+/.idea
+**/build
+/.hvigor
+.cxx
+/.clangd
+/.clang-format
+/.clang-tidy
+**/.test
+/.appanalyzer
+# 本地临时脚本与日志（不进仓库）
+/.workbuddy/tmp
+*.log

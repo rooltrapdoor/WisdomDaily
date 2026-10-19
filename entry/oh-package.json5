@@ -1,0 +1,9 @@
+{
+  "name": "entry",
+  "version": "2.0.0",
+  "description": "每日知途主模块：领域模型 + RelationalStore 数据层 + 页面",
+  "main": "",
+  "author": "wxz",
+  "license": "",
+  "dependencies": {}
+}

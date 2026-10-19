@@ -1,0 +1,304 @@
+{
+    "format": "wisdomdaily.schedule",
+    "version": 1,
+    "exported_at": 1790596131643,
+    "semester": {
+        "name": "默认学期",
+        "total_weeks": 20,
+        "start_date": "2026-08-31"
+    },
+    "template": {
+        "name": "默认",
+        "class_sessions": 12,
+        "duration_time": 45,
+        "slots": [
+            {
+                "session_no": 1,
+                "start_time": "08:00",
+                "end_time": "08:45"
+            },
+            {
+                "session_no": 2,
+                "start_time": "08:55",
+                "end_time": "09:40"
+            },
+            {
+                "session_no": 3,
+                "start_time": "09:50",
+                "end_time": "10:35"
+            },
+            {
+                "session_no": 4,
+                "start_time": "10:55",
+                "end_time": "11:40"
+            },
+            {
+                "session_no": 5,
+                "start_time": "11:50",
+                "end_time": "12:35"
+            },
+            {
+                "session_no": 6,
+                "start_time": "14:10",
+                "end_time": "14:55"
+            },
+            {
+                "session_no": 7,
+                "start_time": "15:05",
+                "end_time": "15:50"
+            },
+            {
+                "session_no": 8,
+                "start_time": "16:10",
+                "end_time": "16:55"
+            },
+            {
+                "session_no": 9,
+                "start_time": "17:05",
+                "end_time": "17:50"
+            },
+            {
+                "session_no": 10,
+                "start_time": "19:10",
+                "end_time": "19:55"
+            },
+            {
+                "session_no": 11,
+                "start_time": "20:05",
+                "end_time": "20:50"
+            },
+            {
+                "session_no": 12,
+                "start_time": "21:00",
+                "end_time": "21:45"
+            }
+        ]
+    },
+    "teachers": [
+        {
+            "staff_no": 2024***25,
+            "name": "ฅ(*`ω´*)ฅ",
+            "department": "信息工程学院",
+            "sex": "男",
+            "courses": [
+                {
+                    "course_name": "软件需求工程",
+                    "course_type": "理论",
+                    "course_score": 2,
+                    "course_remark": "",
+                    "class_groups": [
+                        {
+                            "class_name": "24软件4",
+                            "population": 34,
+                            "color": "#FFE6A1A1",
+                            "time_periods": [
+                                {
+                                    "weekday": 2,
+                                    "start_time": 4,
+                                    "end_time": 5,
+                                    "class_room": "3506",
+                                    "remark": "",
+                                    "week_nums": [
+                                        1,
+                                        2,
+                                        3,
+                                        4,
+                                        5,
+                                        6,
+                                        7,
+                                        8,
+                                        9,
+                                        10,
+                                        11,
+                                        12,
+                                        13,
+                                        14,
+                                        15,
+                                        16
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "class_name": "24软件3",
+                            "population": 35,
+                            "color": "#77ADE2BB",
+                            "time_periods": [
+                                {
+                                    "weekday": 3,
+                                    "start_time": 4,
+                                    "end_time": 5,
+                                    "class_room": "1107",
+                                    "remark": "",
+                                    "week_nums": [
+                                        1,
+                                        2,
+                                        3,
+                                        4,
+                                        5,
+                                        6,
+                                        7,
+                                        8,
+                                        9,
+                                        10,
+                                        11,
+                                        12,
+                                        13,
+                                        14,
+                                        15,
+                                        16
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "class_name": "24软件1",
+                            "population": 34,
+                            "color": "#A7BFA5DC",
+                            "time_periods": [
+                                {
+                                    "weekday": 4,
+                                    "start_time": 2,
+                                    "end_time": 3,
+                                    "class_room": "1004",
+                                    "remark": "",
+                                    "week_nums": [
+                                        1,
+                                        2,
+                                        3,
+                                        4,
+                                        5,
+                                        6,
+                                        7,
+                                        8,
+                                        9,
+                                        10,
+                                        11,
+                                        12,
+                                        13,
+                                        14,
+                                        15,
+                                        16
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "class_name": "24软件5",
+                            "population": 32,
+                            "color": "#FF99D4D9",
+                            "time_periods": [
+                                {
+                                    "weekday": 2,
+                                    "start_time": 6,
+                                    "end_time": 7,
+                                    "class_room": "3308",
+                                    "remark": "",
+                                    "week_nums": [
+                                        1,
+                                        2,
+                                        3,
+                                        4,
+                                        5,
+                                        6,
+                                        7,
+                                        8,
+                                        9,
+                                        10,
+                                        11,
+                                        12,
+                                        13,
+                                        14,
+                                        15,
+                                        16
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "class_name": "24软件2",
+                            "population": 37,
+                            "color": "#B4CAD49D",
+                            "time_periods": [
+                                {
+                                    "weekday": 4,
+                                    "start_time": 4,
+                                    "end_time": 5,
+                                    "class_room": "1004",
+                                    "remark": "",
+                                    "week_nums": [
+                                        1,
+                                        2,
+                                        3,
+                                        4,
+                                        5,
+                                        6,
+                                        7,
+                                        8,
+                                        9,
+                                        10,
+                                        11,
+                                        12,
+                                        13,
+                                        14,
+                                        15,
+                                        16
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "course_name": "计算思维与人工智能基础",
+                    "course_type": "实验",
+                    "course_score": 2,
+                    "course_remark": "",
+                    "class_groups": [
+                        {
+                            "class_name": "2026级财务管理",
+                            "population": 22,
+                            "color": "#BAFF6B6B",
+                            "time_periods": [
+                                {
+                                    "weekday": 1,
+                                    "start_time": 6,
+                                    "end_time": 7,
+                                    "class_room": "5110",
+                                    "remark": "",
+                                    "week_nums": [
+                                        11,
+                                        12
+                                    ]
+                                },
+                                {
+                                    "weekday": 2,
+                                    "start_time": 10,
+                                    "end_time": 11,
+                                    "class_room": "5511",
+                                    "remark": "",
+                                    "week_nums": [
+                                        2,
+                                        3,
+                                        4,
+                                        5,
+                                        6,
+                                        9,
+                                        10,
+                                        11,
+                                        12,
+                                        13,
+                                        14,
+                                        15,
+                                        16,
+                                        17
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

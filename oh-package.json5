@@ -1,0 +1,10 @@
+{
+  "modelVersion": "6.0.0",
+  "description": "每日知途 WisdomDaily（ArkTS / API 20），数据持久化使用 HarmonyOS 内置关系型数据库 RelationalStore。",
+  "dependencies": {},
+  "devDependencies": {
+    "@ohos/hypium": "1.0.24",
+    "@ohos/hamock": "1.0.0"
+  },
+  "dynamicDependencies": {}
+}
