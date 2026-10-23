@@ -170,3 +170,9 @@ v1.0 识别的 16 项缺陷中，**12 项因架构变更从根上消失或已修
 ```bash
 python build_overview.py
 ```
+
+## 开源许可
+
+本项目采用 [MIT License](LICENSE) 开源协议。
+
+Copyright (c) 2026 rooltrapdoor
