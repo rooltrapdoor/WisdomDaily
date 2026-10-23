@@ -152,7 +152,7 @@ HTML = """<!DOCTYPE html>
       <span class="chip">存储 <b>RelationalStore（SQLite）</b></span>
       <span class="chip">数据模型 <b>14 表 + 2 视图 + 14 索引</b>（v7）</span>
       <span class="chip">文档版本 <b>v2.0</b></span>
-      <span class="chip">已落地代码 <b>54 文件 / 26 598 行</b></span>
+      <span class="chip">已落地代码 <b>55 文件 / 26 598 行</b></span>
     </div>
   </header>
 

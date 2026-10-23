@@ -1406,7 +1406,7 @@ function firstMetaValue(table: string[][], headerRow: number, keys: string[]): s
   return '';
 }
 
-/** 从「教师：***」里取出「***」；标签后必须紧跟冒号，值取到空白 / 逗号为止 */
+/** 从「教师：某人」里取出「某人」；标签后必须紧跟冒号，值取到空白 / 逗号为止 */
 function valueAfterLabel(text: string, label: string): string {
   const at: number = text.indexOf(label);
   if (at < 0) {

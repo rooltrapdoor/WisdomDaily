@@ -49,7 +49,7 @@ export class SeedData {
     const semesterId: number = await SemesterDao.insert(exec, semester, 0);
 
     // 3. 示例教师 + 示例课程，让首启界面不是一片空白
-    const teacher: Teacher = Teacher.create('教师名称', 2024111125);
+    const teacher: Teacher = Teacher.create('教师名称', 20240001);
     teacher.department = '计算机科学与技术学院';
     teacher.sex = '男';
     const teacherId: number = await TeacherDao.insert(exec, teacher, semesterId, 0);
