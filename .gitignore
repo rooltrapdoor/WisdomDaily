@@ -11,5 +11,5 @@
 **/.test
 /.appanalyzer
 # 本地临时脚本与日志（不进仓库）
-/.workbuddy/tmp
+/.workbuddy
 *.log
